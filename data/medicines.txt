@@ -1,0 +1,2 @@
+1 Paracetamol 100 5.00
+2 Aspirin 50 3.50
