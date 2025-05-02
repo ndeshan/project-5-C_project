@@ -44,12 +44,15 @@ int main()
         switch (number)
         {
         case 1:
+            system("cls");
             addPatient();
             break;
         case 2:
+            system("cls");
             searchPatient();
             break;
         case 3:
+            system("cls");
             displayAllPatients();
             break;
         case 0:
@@ -70,7 +73,7 @@ void addPatient()
 
     FILE *patientFile;
 
-    patientFile = fopen("data/patients.txt", "w");
+    patientFile = fopen("data/patients.txt", "a+");
 
     if (patientFile == NULL)
     {
@@ -143,9 +146,9 @@ void searchPatient()
     printf("Enter the patient ID : ");
     scanf("%d", &id);
 
-    while (fscanf(patientFile, "%s %d %d %d %s", p1.name, &p1.id, &p1.age, &p1.conNumber, p1.gender) != EOF)
+    while (fscanf(patientFile, "%s %d %d %d %s", p1.name, &p1.id, &p1.age, &p1.conNumber, p1.gender) == 5)
     {
-        if (id == p1.id)
+        if (p1.id == id)
         {
             printf("\nPatient Found !!\n");
             printf("Name: %s\n", p1.name);
@@ -155,8 +158,10 @@ void searchPatient()
             printf("Gender: %s\n", p1.gender);
             break;
         }
-        printf("No patient with ID %d\n", id);
-        break;
+        else
+        {
+            printf("No patient with ID %d\n", id);
+        }
     }
     fclose(patientFile);
 }
